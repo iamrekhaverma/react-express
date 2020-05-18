@@ -3,10 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const port = process.env.PORT || 8080
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
+const db = require('./db')
 var app = express();
 
 // view engine setup
@@ -17,10 +16,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// Serving static files in Express
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,8 +37,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.listen(process.env.PORT || 8080, () => {
-  console.log("app is litening")
+
+
+app.listen(port, () => {
+  console.log("app is listening on port", port)
 });
 
 module.exports = app;
