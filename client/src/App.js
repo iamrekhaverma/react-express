@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,6 +7,7 @@ import {
 import './App.css';
 import ShipsListing from "./pages/ShipsListing";
 import AddEditShip from "./pages/AddEditShip";
+import {Home} from "./pages/home"
 
 function App() {
   return (
@@ -15,8 +16,11 @@ function App() {
         <Route path="/add-edit-ship">
           <AddEditShip />
         </Route>
-        <Route path="/">
+        <Route path="/ships-listing">
           <ShipsListing/>
+        </Route>
+        <Route path="/">
+          <Home/>
         </Route>
       </Switch>
     </Router>

@@ -3,6 +3,7 @@ var router = express.Router();
 var fs = require('fs');
 const csv = require('csv-parser')
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const url = require('url')
 
 // Initial Header for csv
 const csvWriter = createCsvWriter({
@@ -29,7 +30,7 @@ router.get('/', function (req, res) {
     res.send('Hello World!')
 });
 
-// Return csv response
+// Return csv response as json
 router.get('/result', function(req, res, next) {
   const results = [];
   fs.createReadStream('out.csv')
@@ -61,7 +62,7 @@ router.post('/submit-form-data', (req, res) => {
 // Search csv
 router.get('/searchCsv', (req, res) => {
     const body = req.body;
-    console.log("body",body)
+    // console.log("body",req)
     let column = req.query.column;
     let search = req.query.text;
     if(!column && !search) {
@@ -70,6 +71,7 @@ router.get('/searchCsv', (req, res) => {
             error: 'You must provide column name and search parameter',
         })
     }
+    const result = [];
     // Read CSV row by row and send response
     fs.createReadStream('out.csv')
     .on('error', () => {
@@ -78,14 +80,13 @@ router.get('/searchCsv', (req, res) => {
     .pipe(csv())
     .on('data', (row) => {
         // use row data
-        console.log(row,"row");
-        if(row[column] === search) {
-            res.send(row);
+        if(row[column].includes(search)) {
+            result.push(row)
         }
     })
     .on('end', () => {
         // handle end of CSV
-        res.send("no result found");
+        res.send(result);
     })
 });
 

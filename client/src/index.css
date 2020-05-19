@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -24,7 +25,7 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-input[type=number], select {
+input[type=number] {
   /* width: 100%; */
   padding: 12px 20px;
   margin: 8px 0;
@@ -42,6 +43,12 @@ button[type=submit] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  float: right;
+}
+.center-heading {
+  padding: 18px;
+  margin: auto;
+  max-width: 25%;
 }
 
 button[type=submit]:hover {
@@ -49,9 +56,9 @@ button[type=submit]:hover {
 }
 
 div {
-  border-radius: 5px;
+  /* border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
+  padding: 20px; */
 }
 textarea {
   width: 100%;
@@ -62,4 +69,62 @@ textarea {
   border-radius: 4px;
   background-color: #f8f8f8;
   resize: none;
+}
+.flex-items {
+  display: flex;
+  /* line-height: 32px; */
+  align-items: center;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.column {
+  flex-direction: column;
+}
+
+/* Style the form - display items horizontally */
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+/* Add some margins for each label */
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+/* Style the input fields */
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* Style the submit button */
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+.padding-left {
+  /* padding: 0px 39px; */
+}
+
+/* Add responsiveness - display the form controls vertically instead of horizontally on screens that are less than 800px wide */
+@media (max-width: 800px) {
+  /* .form-inline input {
+    margin: 10px 0;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  } */
 }

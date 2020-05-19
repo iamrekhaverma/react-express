@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const config = require("../config");
 
 // mongoose
 //     .connect('mongodb+srv://rekha_verma:hrhkhrhk@1221@cluster0-umsme.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -8,10 +9,7 @@ const mongoose = require('mongoose')
 
 
 const uri = "mongodb+srv://rekha_verma:hrhkhrhk@1221@cluster0-umsme.mongodb.net/test?retryWrites=true&w=majority";
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(config.databaseURL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 .then(() => {
   console.log("MongoDB Connected…")
 })

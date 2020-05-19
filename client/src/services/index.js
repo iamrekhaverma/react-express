@@ -1,9 +1,9 @@
 import Axios from "axios";
 
 class Service {
-  getRequest = url => {
+  getRequest = (url, params) => {
     return new Promise((resolve, reject) => {
-      Axios.get(url)
+      Axios.get(url, params)
         .then(res => {
           resolve(res);
         })
