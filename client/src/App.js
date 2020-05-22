@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
-import ShipsListing from "./pages/ShipsListing";
+import {ShipsListing} from "./pages/ShipsListing";
 import AddEditShip from "./pages/AddEditShip";
 import {Home} from "./pages/home"
 

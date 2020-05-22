@@ -27,7 +27,7 @@ export default class AddEditShip extends React.Component {
     console.log("dtaa",this.state)
     const shipInfo = this.state;
     console.log("shipinfo",Object.values(shipInfo))
-    Service.postRequest('/submit-htmlForm-data', shipInfo)
+    Service.postRequest('/write-to-csv', shipInfo)
   }
   render() {
     return (
